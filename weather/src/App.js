@@ -3,10 +3,18 @@ import {useState} from 'react';
 import Display from './diaplay';
 async function fetchData(search){
   let access_key = "9e059b7a17254104aff130330240703";
-  let response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${access_key}&q=${search}`);
-  let result = await response.json();
-  console.log(result)
-  return result;  
+  try{
+    let response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${access_key}&q=${search}`);
+    if(!response.ok){
+      window.location.reload();
+      alert("Invalid location! Try again");
+    }
+    let result = await response.json();
+    return result;  
+  }
+  catch(error){
+    alert(error);
+  }
 }
 
 function App() {
