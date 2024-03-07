@@ -35,8 +35,10 @@ function App() {
           placeholder='Search for a place'
         />
         <button className='button' onClick={searchWeather}>Search</button>
-        {weatherData &&
+        {(weatherData) ?
           <Display {...weatherData}/>
+          :
+          <p>Fetched data will appear here</p>
         }
       </div>
     </>
